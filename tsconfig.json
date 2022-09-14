@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@exypress/*": ["exypress/*"],
+      "@common/*": ["common/*"],
+      "@src/*": ["src/*"]
+    }
+  },
+  "include": ["./src/**/*", "./exypress/**/*", "./common/**/*"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "swc": true
+  }
+}
