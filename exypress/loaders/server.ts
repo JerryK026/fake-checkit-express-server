@@ -6,9 +6,6 @@ import cookieParser from 'cookie-parser';
 import config from '../config';
 import compression from 'compression';
 
-import 'reflect-metadata';
-import { createConnection } from 'typeorm';
-
 import logger from './logger';
 import morgan from 'morgan';
 import 'express-async-errors';
@@ -28,7 +25,7 @@ app.use(compression());
 app.use(cookieParser());
 
 // enable CORS with various options
-app.use(cors(config.corsOptions));
+app.use(cors(config.CORS_OPTIONS));
 
 // body-parser => parse 'body' to 'req.body'
 app.use(express.json());

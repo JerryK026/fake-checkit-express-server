@@ -3,14 +3,11 @@ import app from './loaders/server';
 
 import logger from './loaders/logger';
 import messages from '../common/messages';
-import { createServer } from 'http';
 
 async function startServer() {
-  const server = createServer(app);
-
-  server
-    .listen(config.port, () => {
-      logger.info(messages.SERVER_RUNNING(config.port));
+  app
+    .listen(config.API_PORT, () => {
+      logger.info(messages.SERVER_RUNNING(config.API_PORT));
     })
     .on('error', (err) => {
       logger.error(err);

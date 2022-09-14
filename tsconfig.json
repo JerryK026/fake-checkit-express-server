@@ -21,6 +21,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "paths": {
       "@exypress/*": ["exypress/*"],
       "@common/*": ["common/*"],
