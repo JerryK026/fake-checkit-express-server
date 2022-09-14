@@ -30,6 +30,7 @@
   "include": ["./src/**/*", "./exypress/**/*", "./common/**/*"],
   "exclude": ["node_modules"],
   "ts-node": {
+    "require": ["tsconfig-paths/register"],
     "swc": true
   }
 }
