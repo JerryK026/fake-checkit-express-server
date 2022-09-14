@@ -4,6 +4,10 @@ import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import config from '../config';
+import compression from 'compression';
+
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
 
 import logger from './logger';
 import morgan from 'morgan';
@@ -17,6 +21,8 @@ const app = express();
 // parse requests which comes with 'urlencoded payload'
 // extended: true => use 'qs' library
 app.use(express.urlencoded({ extended: true }));
+
+app.use(compression());
 
 // parse cookie header to 'req.cookies'
 app.use(cookieParser());
