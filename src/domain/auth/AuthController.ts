@@ -28,8 +28,8 @@ export default class AuthController {
 
     const output: LoginDTO = {
       statusCode: statusCodes.OK,
-      json: {
-        status: 'ok',
+      status: 'ok',
+      data: {
         token: token,
       },
     };

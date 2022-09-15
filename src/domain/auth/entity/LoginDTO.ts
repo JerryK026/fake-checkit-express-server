@@ -1,7 +1,7 @@
 export type LoginDTO = {
   statusCode: number;
-  json: {
-    status: string;
+  status: string;
+  data: {
     token: string;
   };
 };
