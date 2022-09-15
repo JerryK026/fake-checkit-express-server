@@ -1,3 +1,4 @@
+import { BaseHttpError } from '@common/error/HttpErrors';
 import statusCodes from '@common/messages/statusCodes';
 import logger from '@exypress/loaders/logger';
 import { Request, Response } from 'express';
@@ -23,7 +24,7 @@ export default class AuthController {
     }
 
     const token = (await authService.issueToken(user._id).catch((err) => {
-      throw new Error('nok');
+      throw new BaseHttpError('token 발행 중 에러 발생', statusCodes.OK, 'nok');
     })) as string;
 
     const output: LoginDTO = {

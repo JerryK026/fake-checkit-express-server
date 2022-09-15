@@ -10,7 +10,6 @@ import compression from 'compression';
 
 import logger from './logger';
 import morgan from 'morgan';
-import 'express-async-errors';
 
 import Routes from '../../src';
 import { BaseHttpError } from '../../common/error/HttpErrors';
