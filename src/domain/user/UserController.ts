@@ -44,10 +44,7 @@ export default class UserController {
     await userService.deleteUser(decoded._id);
 
     const output: UserUnregisterDTO = {
-      statusCode: statusCodes.OK,
-      json: {
-        status: 'ok',
-      },
+      status: 'ok',
     };
 
     return res.status(statusCodes.OK).json(output);
