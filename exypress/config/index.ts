@@ -13,6 +13,7 @@ type IConfig = {
   DB_USER: string;
   DB_PASSWORD: string;
   DB_DATABASE: string;
+  DB_HOST: string;
   DB_LOGGING: boolean;
 };
 
@@ -48,7 +49,8 @@ const config: IConfig = {
 
   DB_USER: process.env.DB_USER || '',
   DB_PASSWORD: process.env.DB_PASSWORD || '',
-  DB_DATABASE: process.env.DB_PROCESS || '',
+  DB_DATABASE: process.env.DB_DATABASE || '',
+  DB_HOST: process.env.DB_HOST || 'localhost',
   DB_LOGGING: Boolean(process.env.DB_LOGGING) || false,
 };
 

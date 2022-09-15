@@ -1,3 +1,5 @@
+import dbConnect from './db';
+
 import express, { Request, Response, NextFunction } from 'express';
 
 import cors from 'cors';
@@ -12,6 +14,8 @@ import 'express-async-errors';
 
 import Routes from '../../src';
 import { BaseHttpError } from '../../common/error/HttpErrors';
+
+dbConnect();
 
 const app = express();
 
@@ -41,7 +45,7 @@ Routes(app);
 
 app.use((err: BaseHttpError, req: Request, res: Response, next: NextFunction) => {
   logger.error(err.stack);
-  return res.status(err.statusCode || 500).send(err.message);
+  res.status(err.statusCode || 500).json(err.message);
 });
 
 export default app;
