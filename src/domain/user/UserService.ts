@@ -1,6 +1,7 @@
 import DBError from '@common/error/DBError';
 import { BaseHttpError } from '@common/error/HttpErrors';
 import statusCodes from '@common/messages/statusCodes';
+import { Types } from 'mongoose';
 import User from './entity/User';
 
 export default class UserService {
@@ -15,5 +16,9 @@ export default class UserService {
     return await User.create({ email, key, name }).catch((err) => {
       throw new BaseHttpError(err.message, statusCodes.OK, 'nok');
     });
+  }
+
+  public async deleteUser(_id: Types.ObjectId) {
+    return await User.findByIdAndDelete({ _id });
   }
 }
