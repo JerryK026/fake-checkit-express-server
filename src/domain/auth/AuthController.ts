@@ -3,6 +3,7 @@ import logger from '@exypress/loaders/logger';
 import { Request, Response } from 'express';
 import UserService from '../user/UserService';
 import AuthService from './AuthService';
+import { LoginDTO } from './entity/LoginDTO';
 
 const userService = new UserService();
 const authService = new AuthService();
@@ -21,10 +22,18 @@ export default class AuthController {
       return res.status(statusCodes.OK).json({ status: 'no_user' });
     }
 
-    const token = await authService.issueToken(user._id).catch((err) => {
+    const token = (await authService.issueToken(user._id).catch((err) => {
       throw new Error('nok');
-    });
+    })) as string;
 
-    return res.status(statusCodes.OK).json({ status: 'ok', token });
+    const output: LoginDTO = {
+      statusCode: statusCodes.OK,
+      json: {
+        status: 'ok',
+        token: token,
+      },
+    };
+
+    return res.status(statusCodes.OK).json(output);
   }
 }
