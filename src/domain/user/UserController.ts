@@ -4,6 +4,7 @@ import logger from '@exypress/loaders/logger';
 import { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import AuthService from '../auth/AuthService';
+import { UserRegisterDTO } from './entity/UserRegisterDTO';
 import UserService from './UserService';
 
 const userService = new UserService();
@@ -19,11 +20,21 @@ export default class UserController {
     }
     const newUser = await userService.registerUser(name, email, key);
 
-    const token = await authService.issueToken(newUser.id).catch((err) => {
+    const token = (await authService.issueToken(newUser.id).catch((err) => {
       throw new BaseHttpError(err.message, statusCodes.OK, 'nok');
-    });
+    })) as string;
 
-    return res.status(statusCodes.OK).json({ status: 'ok', token });
+    const output: UserRegisterDTO = {
+      statusCode: statusCodes.OK,
+      json: {
+        status: 'ok',
+        data: {
+          token,
+        },
+      },
+    };
+
+    return res.status(statusCodes.OK).json(output);
   }
 
   public async unRegisterUser(req: Request, res: Response) {
