@@ -1,6 +1,8 @@
 import { BaseHttpError } from '@common/error/HttpErrors';
 import statusCodes from '@common/messages/statusCodes';
+import logger from '@exypress/loaders/logger';
 import { Request, Response } from 'express';
+import { JwtPayload } from 'jsonwebtoken';
 import AuthService from '../auth/AuthService';
 import UserService from './UserService';
 
@@ -22,5 +24,17 @@ export default class UserController {
     });
 
     return res.status(statusCodes.OK).json({ status: 'ok', token });
+  }
+
+  public async unRegisterUser(req: Request, res: Response) {
+    const token = req.headers['authorization']?.split(' ')[1] as string;
+
+    const decoded = (await authService.verifyToken(token).catch((err) => {
+      throw new BaseHttpError(err.message, statusCodes.OK, 'nok');
+    })) as JwtPayload;
+
+    await userService.deleteUser(decoded._id);
+
+    return res.status(statusCodes.OK).json({ status: 'ok' });
   }
 }
