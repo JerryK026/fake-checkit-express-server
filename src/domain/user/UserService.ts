@@ -1,4 +1,3 @@
-import DBError from '@common/error/DBError';
 import { BaseHttpError } from '@common/error/HttpErrors';
 import statusCodes from '@common/messages/statusCodes';
 import { Types } from 'mongoose';
