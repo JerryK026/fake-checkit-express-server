@@ -1,7 +1,6 @@
 import config from '@exypress/config';
 import jwt from 'jsonwebtoken';
 import { Types } from 'mongoose';
-import User from '../user/entity/User';
 
 export default class AuthService {
   public async issueToken(userId: Types.ObjectId) {
@@ -21,6 +20,17 @@ export default class AuthService {
         },
       );
     });
+    return tokenPromise;
+  }
+
+  public async verifyToken(token: string) {
+    const tokenPromise = new Promise((resolve, reject) => {
+      jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
+        if (err) reject(err);
+        resolve(decoded);
+      });
+    });
+
     return tokenPromise;
   }
 
