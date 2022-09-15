@@ -5,4 +5,8 @@ export default class DoctorService {
   public async findDoctorList() {
     return await Doctor.find();
   }
+
+  public async findByDoctorId(_id: string) {
+    return await Doctor.findById({ _id });
+  }
 }
