@@ -25,12 +25,9 @@ export default class UserController {
     })) as string;
 
     const output: UserRegisterDTO = {
-      statusCode: statusCodes.OK,
-      json: {
-        status: 'ok',
-        data: {
-          token,
-        },
+      status: 'ok',
+      data: {
+        token,
       },
     };
 
