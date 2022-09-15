@@ -9,6 +9,7 @@ type IConfig = {
   };
 
   JWT_SECRET: string;
+  KEY_SECRET: string;
 
   DB_USER: string;
   DB_PASSWORD: string;
@@ -46,6 +47,7 @@ const config: IConfig = {
   },
 
   JWT_SECRET: process.env.JWT_SECRET || '',
+  KEY_SECRET: process.env.KEY_SECRET || '',
 
   DB_USER: process.env.DB_USER || '',
   DB_PASSWORD: process.env.DB_PASSWORD || '',
